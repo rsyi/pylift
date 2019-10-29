@@ -66,8 +66,8 @@ def _get_counts(df_new, feats, col_treatment='Treatment', col_outcome='Outcome')
     trt = df_new[col_outcome]
     for feat in feats:
         bin_feat = str(feat)+'_bin'
-        counts1_t1 = df_new[(y==1)&(trt==1)][[feat,bin_feat]].groupby(bin_feat).count().rename(columns={feat:'counts_y1t1'})
-        counts1_t0 = df_new[(y==1)&(trt==0)][[feat,bin_feat]].groupby(bin_feat).count().rename(columns={feat:'counts_y1t0'})
+        counts1_t1 = df_new[(y>0)&(trt==1)][[feat,bin_feat]].groupby(bin_feat).count().rename(columns={feat:'counts_y1t1'})
+        counts1_t0 = df_new[(y>0)&(trt==0)][[feat,bin_feat]].groupby(bin_feat).count().rename(columns={feat:'counts_y1t0'})
         counts0_t1 = df_new[(y==0)&(trt==1)][[feat,bin_feat]].groupby(bin_feat).count().rename(columns={feat:'counts_y0t1'})
         counts0_t0 = df_new[(y==0)&(trt==0)][[feat,bin_feat]].groupby(bin_feat).count().rename(columns={feat:'counts_y0t0'})
         # creating a dataframe with all of these results
@@ -174,8 +174,8 @@ def _NIV(df_new, feats, col_treatment='Treatment', col_outcome='Outcome'):
     y = df_new[col_outcome]
     ny0t0 = len(df_new[(y==0)&(trt==0)])
     ny0t1 = len(df_new[(y==0)&(trt==1)])
-    ny1t0 = len(df_new[(y==1)&(trt==0)])
-    ny1t1 = len(df_new[(y==1)&(trt==1)])
+    ny1t0 = len(df_new[(y>0)&(trt==0)])
+    ny1t1 = len(df_new[(y>0)&(trt==1)])
 
     # get overall counts
     counts_dict = _get_counts(df_new, feats, col_treatment=col_treatment, col_outcome=col_outcome)

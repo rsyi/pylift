@@ -1,11 +1,11 @@
 from setuptools import find_packages, setup
 
 setup(name='pylift',
-      version='0.1.0',
+      version='0.1.1',
       description='Python implementation of uplift modeling.',
       author='Robert Yi, Will Frost',
       author_email='robert@ryi.me',
-      url='https://github.com/wayfair/pylift',
+      url='https://github.com/pylift/pylift',
       install_requires=[
             'numpy',
             'matplotlib',
