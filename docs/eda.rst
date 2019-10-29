@@ -1,13 +1,15 @@
 Usage: EDA
 ===============
 
-Once a ``TransformedOutcome()`` object has been instantiated, **pylift** offers a couple methods for simple feature EDA: ``up.NIV()`` (Net Information Value) and ``up.NWOE()`` (Net Weight of Evidence). See `Data Exploration with Weight of Evidence and Information Value in R <https://multithreaded.stitchfix.com/blog/2015/08/13/weight-of-evidence/>`_ for more details.
+Once a ``TransformedOutcome()`` object has been instantiated, **pylift** offers a couple methods for simple feature EDA: ``up.NIV()`` (Net Information Value) and ``up.NWOE()`` (Net Weight of Evidence).
+
+See `Data Exploration with Weight of Evidence and Information Value in R <https://multithreaded.stitchfix.com/blog/2015/08/13/weight-of-evidence/>`_ for more details.
 
 Net Weight of Evidence
 ----------------------
-*Weight of Evidence* comes from a simple Bayesian decomposition of lift as a function of features:
+*Weight of Evidence* comes from a simple Bayesian decomposition of relative lift as a function of features:
 
-.. math:: \log \frac{P(Y = 1|X_j}{P(Y = 0|X_j} = \log \frac{P(Y=1)}{P(Y=0)} + \underbrace{\log \frac{P(X_j | Y=1)}{P(X_j | Y =0)}}_{\text{Weight of Evidence}}
+.. math:: \log \frac{P(Y = 1|X_j)}{P(Y = 0|X_j)} = \log \frac{P(Y=1)}{P(Y=0)} + \underbrace{\log \frac{P(X_j | Y=1)}{P(X_j | Y =0)}}_{\text{Weight of Evidence}}
 
 Net Weight of Evidence (NWOE) is the difference in Weight of Evidence (WOE) between the treatment and control groups.
 
@@ -15,7 +17,7 @@ Net Weight of Evidence (NWOE) is the difference in Weight of Evidence (WOE) betw
 
 Where Weight of Evidence is defined as:
 
-.. math:: \text{WOE_{ij} = \log \frac{P(X_j \subset B_i | Y = 1}{P(X_j \subset B_i | Y = 0}
+.. math:: \text{WOE}_{ij} = \log \frac{P(X_j \subset B_i | Y = 1)}{P(X_j \subset B_i | Y = 0)}
 
 where :math:`B_i` indicates a bin :math:`i`, and the subscript :math:`j` indicates a particular feature.
 
