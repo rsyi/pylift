@@ -17,7 +17,7 @@ Net Weight of Evidence (NWOE) is the difference in Weight of Evidence (WOE) betw
 
 Where Weight of Evidence is defined as:
 
-.. math:: \text{WOE}_{ij} = \log \frac{P(X_j \subset B_i | Y = 1)}{P(X_j \subset B_i | Y = 0)}
+.. math:: \text{WOE}_{ij} = \log \frac{P(X_j \elem B_i | Y = 1)}{P(X_j \elem B_i | Y = 0)}
 
 where :math:`B_i` indicates a bin :math:`i`, and the subscript :math:`j` indicates a particular feature.
 
