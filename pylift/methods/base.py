@@ -224,52 +224,15 @@ class BaseProxyMethod:
 
         # Pass scoring function as default arguments in hyperparameter search functions.
         default_params = {
+            'estimator': self.sklearn_model(),
             'verbose': 3,
             'scoring': scoring_arg,
             'refit': False,
         }
-        # Default XGBRegressor params.
-        if self.sklearn_model == XGBRegressor:
-            min_colsamp = np.amax([1/len(self.x_train.columns), 0.3])
-            self.randomized_search_params = {
-                'estimator': self.sklearn_model(nthread=1),
-                'param_distributions': {
-                    'n_estimators': range(10,500),
-                    'max_depth': list(range(2, 21, 1)),
-                    'min_child_weight': list(range(1,500,1)),
-                    'gamma': uniform(0, 10),
-                    'subsample': uniform(0.3, 0.7),
-                    'colsample_bytree': uniform(min_colsamp, 1-min_colsamp),
-                },
-                'n_iter': 200,
-                **default_params
-            }
-            self.grid_search_params = {
-                'estimator': self.sklearn_model(),
-                'param_grid': {'min_child_weight': list(range(1,200,1))},
-                **default_params
-            }
-            self.bayes_search_params = {
-                'estimator': self.sklearn_model(),
-                'search_spaces':{'gamma':Real(1e-6, 1e+1, prior='log-uniform')},
-                **default_params
-            }
-        # Default parameters for other models.
-        else:
-            self.randomized_search_params = {
-                'estimator': self.sklearn_model(),
-                **default_params
-                }
-            self.grid_search_params = {
-                'estimator': self.sklearn_model(),
-                **default_params
-            }
-        self.bayes_search_params = {
-                'estimator': self.sklearn_model(),
-                **default_params
-            }
-
-
+        # Default parameters for all models.
+        self.randomized_search_params = default_params.copy()
+        self.grid_search_params = default_params.copy()
+        self.bayes_search_params = default_params.copy()
 
     def NWOE(self, feats_to_use=None, n_bins=10):
         """Net weight of evidence.

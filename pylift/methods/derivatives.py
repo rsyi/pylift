@@ -5,7 +5,8 @@ from scipy.stats import uniform
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import make_scorer
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV, train_test_split
-from xgboost import XGBClassifier, XGBRegressor
+from skopt.space import Real
+from xgboost import XGBRegressor
 
 import numpy as np
 import pickle
@@ -26,6 +27,21 @@ def custom_objective(dtrain, preds):
     grad = w_i*err
     hess = np.ones(dtrain.shape)
     return grad, hess
+
+
+class XGBLiftRegressor(XGBRegressor):
+    """XGBRegressor with modified objective function so each split minimizes error in lift prediction. Syntax is the same as XGBRegressor, but the optional argument for objective_function is disabled.
+    """
+    def __init__(self, max_depth=3, learning_rate=0.1, n_estimators=100,
+                 verbosity=1, objective=custom_objective,
+                 booster='gbtree', tree_method='auto', n_jobs=1, gamma=0,
+                 min_child_weight=1, max_delta_step=0, subsample=1,
+                 colsample_bytree=1, colsample_bylevel=1, colsample_bynode=1,
+                 reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5,
+                 random_state=0, missing=None, num_parallel_tree=1,
+                 importance_type="gain", **kwargs):
+        super(XGBRegressor, self).__init__(**kwargs)
+
 
 class FlaggedFloat(float):
     """Float subclass that retains a Treatment flag property.
@@ -141,6 +157,30 @@ class TransformedOutcome(BaseProxyMethod):
 
         return treatment, outcome, p
 
-    def __init__(self, df, col_treatment='Treatment', col_outcome='Outcome', col_transformed_outcome='TransformedOutcome', col_policy=None, continuous_outcome='infer', random_state=2701, test_size=0.2, stratify=None, scoring_cutoff=1, sklearn_model=XGBRegressor, scoring_method='cgains'):
+    def __init__(self, df, col_treatment='Treatment', col_outcome='Outcome', col_transformed_outcome='TransformedOutcome', col_policy=None, continuous_outcome='infer', random_state=2701, test_size=0.2, stratify=None, scoring_cutoff=1, sklearn_model=XGBLiftRegressor, scoring_method='cgains'):
 
         super().__init__(df, transform_func=self._transform_func, untransform_func=self._untransform_func, col_treatment=col_treatment, col_outcome=col_outcome, col_transformed_outcome=col_transformed_outcome, col_policy=col_policy, continuous_outcome=continuous_outcome, random_state=random_state, test_size=test_size, stratify=stratify, scoring_cutoff=scoring_cutoff, scoring_method=scoring_method, sklearn_model=sklearn_model)
+
+        # Update hyperparams for XGBLift-specific values.
+        min_colsamp = np.amax([1/len(self.x_train.columns), 0.3])
+        self.randomized_search_params.update({
+            'estimator': self.sklearn_model(nthread=1),
+            'param_distributions': {
+                'n_estimators': range(10,500),
+                'max_depth': list(range(2, 21, 1)),
+                'min_child_weight': list(range(1,500,1)),
+                'gamma': uniform(0, 10),
+                'subsample': uniform(0.3, 0.7),
+                'colsample_bytree': uniform(min_colsamp, 1-min_colsamp),
+            },
+            'n_iter': 200,
+        })
+        self.grid_search_params.update({
+            'estimator': self.sklearn_model(),
+            'param_grid': {'min_child_weight': list(range(1,200,1))},
+        })
+        self.bayes_search_params.update({
+            'estimator': self.sklearn_model(),
+            'search_spaces':{'gamma':Real(1e-6, 1e+1, prior='log-uniform')},
+        })
+
