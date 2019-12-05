@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath('../'))
 
 # Add mock modules.
 import mock
-MOCK_MODULES = ['matplotlib', 'matplotlib.pylab', 'matplotlib.pyplot', 'numpy', 'pandas', 'scipy', 'scipy.stats', 'sklearn', 'sklearn.ensemble', 'sklearn.metrics', 'sklearn.model_selection', 'xgboost']
+MOCK_MODULES = ['matplotlib', 'matplotlib.pylab', 'matplotlib.pyplot', 'numpy', 'pandas', 'scipy', 'scipy.stats', 'sklearn', 'sklearn.ensemble', 'sklearn.metrics', 'sklearn.model_selection', 'xgboost', 'skopt', 'skopt.space']
 for mod_name in MOCK_MODULES:
    sys.modules[mod_name] = mock.Mock()
 
@@ -31,7 +31,7 @@ copyright = '2018-2019, the authors'
 author = 'Robert Yi, Will Frost'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = '0.1.3'
 
 
 # -- General configuration ---------------------------------------------------

@@ -24,7 +24,7 @@ The instantiation step accomplishes several things:
 4. Define an ``untransform`` function and use this to define a scoring function for hyperparameter tuning. The scoring function is saved within ``up.randomized_search_params`` and ``up.grid_search_params``, which are dictionaries that are used by default whenever ``up.randomized_search()`` or ``up.grid_search()`` are called.
 5. Define some default hyperparameters.
 
-If you'd alternatively like to specify your own train-test split, a tuple of dataframes can also be passed in place of `df`, with the training data as the first element and the test data as the second (e.g. `TransformedOutcome((df_train, df_test), col_treatment...)`.
+If you'd alternatively like to specify your own train-test split, a tuple of dataframes can also be passed in place of ``df``, with the training data as the first element and the test data as the second (e.g. ``TransformedOutcome((df_train, df_test), col_treatment...)``.
 
 Fit and hyperparameter tunings: passing custom parameters
 ---------------------------------------------------------

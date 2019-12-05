@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(name='pylift',
-      version='0.1.1',
+      version='0.1.3',
       description='Python implementation of uplift modeling.',
       author='Robert Yi, Will Frost',
       author_email='robert@ryi.me',
@@ -11,7 +11,7 @@ setup(name='pylift',
             'matplotlib',
             'scikit-learn',
             'scipy',
-            'seaborn',
+            'scikit-optimize',
             'xgboost'
           ],
       packages=find_packages(),

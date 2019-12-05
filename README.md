@@ -1,6 +1,6 @@
 # pylift
 
-[![Documentation Status](https://readthedocs.org/projects/pylift/badge/?version=latest)](https://pylift.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://travis-ci.com/rsyi/pylift.svg?branch=master)](https://travis-ci.com/rsyi/pylift)
+[![Documentation Status](https://readthedocs.org/projects/pylift/badge/?version=latest)](https://pylift.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://travis-ci.com/rsyi/pylift.svg?branch=master)](https://travis-ci.com/rsyi/pylift) [![GitHub version](https://badge.fury.io/gh/pylift%2Fpylift.svg)](https://badge.fury.io/gh/pylift%2Fpylift)
 
 [Read our documentation!](https://pylift.readthedocs.io/en/latest/)
 
@@ -10,7 +10,10 @@ This branch is a fork from [github.com/wayfair/pylift](https://github.com/wayfai
 
 ## Installation
 This version of pylift can be installed through pypi:
-`pip install pylift`
+
+```
+pip install pylift
+```
 
 ## License
 Licensed under the BSD-2-Clause by the authors.

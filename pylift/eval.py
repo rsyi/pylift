@@ -32,9 +32,9 @@ def _ensure_array(arraylike):
 def _get_counts(treatment, outcome, p):
     """Extract (treatment,outcome) pair counts from treatment and outcome vectors.
 
-    Calculate counts of outcome/treatment combinations. Variables are named
-    nt#o#, where the # corresponds to a binary value for test and outcome,
-    respectively.
+    Calculate effective counts of outcome/treatment combinations (rescaled by
+    propensity). Variables are named nt#o#, where the # corresponds to a binary
+    value for test and outcome, respectively.
 
     Parameters
     ----------
@@ -48,13 +48,13 @@ def _get_counts(treatment, outcome, p):
     Returns
     -------
     Nt1o1 : int
-        Number of entries where (treatment, outcome) == (1,1).
+        Effective number of entries where (treatment, outcome) == (1,1).
     Nt0o1 : int
-        Number of entries where (treatment, outcome) == (0,1).
+        Effective number of entries where (treatment, outcome) == (0,1).
     Nt1o0 : int
-        Number of entries where (treatment, outcome) == (1,0).
+        Effective number of entries where (treatment, outcome) == (1,0).
     Nt0o0 : int
-        Number of entries where (treatment, outcome) == (0,0).
+        Effective number of entries where (treatment, outcome) == (0,0).
 
     """
     Nt1o1 = 0.5*np.sum(1/p[(treatment == 1) & (outcome > 0)])
@@ -64,27 +64,28 @@ def _get_counts(treatment, outcome, p):
     return Nt1o1, Nt0o1, Nt1o0, Nt0o0
 
 def _get_tc_counts(Nt1o1, Nt0o1, Nt1o0, Nt0o0):
-    """Get treatment and control group sizes from `_get_counts` output.
+    """Get effective (scaled by propensity) treatment and control group sizes
+    from `_get_counts` output.
 
     Parameters
     ----------
     Nt1o1 : int
-        Number of entries where (treatment, outcome) == (1,1).
+        Effective number of entries where (treatment, outcome) == (1,1).
     Nt0o1 : int
-        Number of entries where (treatment, outcome) == (0,1).
+        Effective number of entries where (treatment, outcome) == (0,1).
     Nt1o0 : int
-        Number of entries where (treatment, outcome) == (1,0).
+        Effective number of entries where (treatment, outcome) == (1,0).
     Nt0o0 : int
-        Number of entries where (treatment, outcome) == (0,0).
+        Effective number of entries where (treatment, outcome) == (0,0).
 
     Returns
     -------
     Nt1 : int
-        Size of treatment group.
+        Effective size of treatment group.
     Nt0 : int
-        Size of control group.
+        Effective size of control group.
     N : int
-        Size of full group.
+        Effective size of full group.
 
     """
     Nt1 = Nt1o0 + Nt1o1
