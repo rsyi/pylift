@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='pylift',
-      version='0.1.3',
+      version='0.1.5',
       description='Python implementation of uplift modeling.',
       author='Robert Yi, Will Frost',
       author_email='robert@ryi.me',
