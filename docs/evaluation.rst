@@ -16,9 +16,9 @@ All curves can be plotted using
 
 Where ``plot_type`` can be any of the following values. In the formulaic representations
 
--  ``qini``: typical Qini curve (see Radcliffe 2007), except we normalize by the total number of people in treatment. The typical definition is
+-  ``qini``: typical Qini curve (see Radcliffe 2007), except we normalize by the total number of people in treatment. Our adapted definition is:
 
-   .. math:: n_{t,1} - n_{c,1} N_t/N_c.
+   .. math:: \frac{n_{t,1}}{N_t} - \frac{n_{c,1}}{N_c}.
 
 -  ``aqini``: adjusted Qini curve, calculated as
 
