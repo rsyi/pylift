@@ -6,7 +6,7 @@
 Welcome to pylift's documentation!
 ==================================
 
-**pylift** is an uplift library that provides, primarily, (1) fast uplift modeling implementations and (2) evaluation tools. While other packages and more exact methods exist to model uplift, **pylift** is designed to be quick, flexible, and effective. **pylift** heavily leverages the optimizations of other packages -- namely, ``xgboost``, ``sklearn``, ``pandas``, ``matplotlib``, ``numpy``, and ``scipy``.
+**pylift** is an uplift library that provides, primarily, (1) fast uplift modeling implementations and (2) evaluation tools. While other packages and more exact methods exist to model uplift, **pylift** is designed to be quick, flexible, and effective. **pylift** heavily leverages the optimizations of other packages -- namely, ``xgboost``, ``sklearn``, ``pandas``, ``matplotlib``, ``numpy``, and ``scipy``. **pylift** is being actively maintained at [github.com/df-foundation/pylift](https://github.com/df-foundation/pylift).
 
 .. toctree::
    :maxdepth: 2
