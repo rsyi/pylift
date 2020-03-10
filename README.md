@@ -1,4 +1,6 @@
-# pylift
+<p align="center">
+  <img src="https://github.com/df-foundation/pylift/raw/master/docs/img/pylift_logo.png?raw=true" height="90px">
+</p>
 
 [![Documentation Status](https://readthedocs.org/projects/pylift/badge/?version=latest)](https://pylift.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://travis-ci.com/rsyi/pylift.svg?branch=master)](https://travis-ci.com/rsyi/pylift) [![GitHub version](https://badge.fury.io/gh/pylift%2Fpylift.svg)](https://badge.fury.io/gh/pylift%2Fpylift)
 
