@@ -1,13 +1,10 @@
-# Raw data
+# Accessing raw data
 
-Raw data and wrapped class objects for the `TransformedOutcome` method are
-stored as class attributes. The wrapped class objects are described in the
-[Usage: modeling](usage) section.
+Raw data and wrapped class objects for the `TransformedOutcome` method are stored as class attributes. The wrapped class objects are described in the [Usage: modeling](https://github.com/df-foundation/pylift/tree/1b025a2bc1ee3237642bb19d83d54f854133e247/docs/markdown_archive/usage/README.md) section.
 
-Everything else, from processed data to the transformation functions can be accessed
-as listed below:
+Everything else, from processed data to the transformation functions can be accessed as listed below:
 
-```
+```text
 up.randomized_search_params # Parameters that are used in `up.randomized_search()`
 up.grid_search_params       # Parameters that are used in `up.grid_search()`
 
@@ -35,20 +32,18 @@ up.q2_cgains
 
 ## Evaluation curve information
 
-The raw data for all evaluation curves can be accessed within any `UpliftEval`
-object (`upev` below):
+The raw data for all evaluation curves can be accessed within any `UpliftEval` object \(`upev` below\):
 
-```
+```text
 upev.PLOTTYPE_x  # percentile
 upev.PLOTTYPE_y
 ```
 
-where the phrase `PLOTTYPE` can be replaced with any of the following: `qini`, `aqini`, `cgains`, `cuplift`, `balance`, `uplift`. Because `up.test_results_` and `up.train_results_` are
-`UpliftEval` class objects, they can also be similarly accessed as shown above.
+where the phrase `PLOTTYPE` can be replaced with any of the following: `qini`, `aqini`, `cgains`, `cuplift`, `balance`, `uplift`. Because `up.test_results_` and `up.train_results_` are `UpliftEval` class objects, they can also be similarly accessed as shown above.
 
 The theoretical maximum curves can also be extracted:
 
-```
+```text
 # Overfitting theoretical maximal qini curve.
 upev.qini_max_x  # percentile
 upev.qini_max_y
@@ -62,6 +57,5 @@ upev.qini_nosdmax_x
 upev.qini_nosdmax_y
 ```
 
-`up.train_results_` can be used to plot the qini performance on the training
-data, as follows: `up.train_results_.plot_qini()`.
+`up.train_results_` can be used to plot the qini performance on the training data, as follows: `up.train_results_.plot_qini()`.
 
