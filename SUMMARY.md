@@ -1,6 +1,6 @@
 # Table of contents
 
-* [README](README.md)
+* [pylift](README.md)
 * [Quick start](quick-start.md)
 * [Usage: evaluation](evaluation.md)
 * [Introduction to uplift](introduction.md)

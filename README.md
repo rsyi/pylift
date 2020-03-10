@@ -1,4 +1,4 @@
-# README
+# pylift
 
 ![](https://github.com/df-foundation/pylift/raw/master/docs/img/pylift_logo.png?raw=true)
 
