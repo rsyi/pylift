@@ -4,7 +4,7 @@
 
 [![GitHub version](https://badge.fury.io/gh/pylift%2Fpylift.svg)](https://badge.fury.io/gh/pylift%2Fpylift)
 
-[Read our documentation!](https://pylift.readthedocs.io/en/latest/)
+[Read our documentation!](https://docs.pylift.org/)
 
 **pylift** is an uplift library that provides, primarily:
 
