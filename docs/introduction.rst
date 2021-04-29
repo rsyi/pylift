@@ -27,9 +27,9 @@ labelling (treatment, outcome) pairs as follows:
 .. image:: ./img/transformed_outcome_small.png
    :align: center
 
-The beauty of this transformation is that, in expectation,
+The beauty of this transformation is that, in expectation (Using Law of Total Expectation),
 
-.. math:: E[Y^{*}] = P(Y | W=1) - P(Y | W=0),
+.. math:: E[Y^{*}] = P(Y =1 | W=1) - P(Y =1 | W=0),
 
 or uplift. Any algorithm trained to predict :math:`Y^{*}`, then, gives a
 prediction of uplift.
