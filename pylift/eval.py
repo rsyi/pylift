@@ -602,7 +602,7 @@ class UpliftEval:
         y_calculating_functions = {
             'qini': lambda nt1o1, nt0o1, nt1, nt0: nt1o1/self.N_treat - nt0o1/self.N_contr,
             'aqini': lambda nt1o1, nt0o1, nt1, nt0: nt1o1/self.N_treat - nt0o1*nt1/(nt0*self.N_treat + EPS),
-            'cgains': lambda nt1o1, nt0o1, nt1, nt0: (nt1o1/(nt1+EPS)- nt0o1/(nt0+EPS))*(nt1+nt0)/self.N,
+            'cgains': lambda nt1o1, nt0o1, nt1, nt0: (nt1o1/(nt1+EPS)- nt0o1/(nt0+EPS))*(nt1+nt0),
             'cuplift': lambda nt1o1, nt0o1, nt1, nt0: nt1o1/(nt1+EPS) - nt0o1/(nt0+EPS),
             'uplift': lambda nt1o1, nt0o1, nt1, nt0: nt1o1/(nt1+EPS) - nt0o1/(nt0+EPS),
             'balance': lambda nt1o1, nt0o1, nt1, nt0: nt1/(nt0+nt1+EPS)
